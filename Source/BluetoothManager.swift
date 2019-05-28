@@ -184,6 +184,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
             return
         }
         connectedPeripheral?.writeValue(data, for: characteristic, type: type)
+        print("write value:\(data) for characteristic:\(characteristic)")
     }
     
     // MARK: Delegate
@@ -343,7 +344,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
      - parameter error:          The error message
      */
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("Bluetooth Manager --> didUpdateValueForCharacteristic")
+        print("Bluetooth Manager --> didUpdateValueForCharacteristic:\(characteristic)")
         if error != nil {
             print("Bluetooth Manager --> Failed to read value for the characteristic. Error:\(error!.localizedDescription)")
             delegate?.didFailToReadValueForCharacteristic?(error!)

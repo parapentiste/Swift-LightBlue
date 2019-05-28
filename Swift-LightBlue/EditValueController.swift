@@ -35,8 +35,10 @@ class EditValueController: UIViewController, BluetoothDelegate {
             if hexString.count % 2 != 0 {
                 hexString = "0" + hexString
             }
+            print("hextString:\(hexString)")
             let data = hexString.dataFromHexadecimalString()
             self.bluetoothManager.writeValue(data: data!, forCharacteristic: self.characteristic!, type: self.writeType!)
+            print("input data is: \(data)")
             self.navigationController?.popViewController(animated: true)
         }
         valueInputTf.inputView = inputView
